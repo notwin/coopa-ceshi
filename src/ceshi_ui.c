@@ -1,9 +1,9 @@
-// src/mygame_ui.c —— 见 mygame_ui.h。只用 ui_kit.h 的小工具;精灵都 ≤ 16×16,放大 3 倍。
-#include "mygame_ui.h"
+// src/ceshi_ui.c —— 见 ceshi_ui.h。只用 ui_kit.h 的小工具;精灵都 ≤ 16×16,放大 3 倍。
+#include "ceshi_ui.h"
 
 #include <stdio.h>
 
-#include "mygame_texts.h"
+#include "ceshi_texts.h"
 #include "ui_kit.h"
 
 #define ROW_Y0   70
@@ -25,7 +25,7 @@ static lv_obj_t *centered(lv_obj_t *scr, const lv_font_t *f, uint32_t color, con
     return t;
 }
 
-void mygame_ui_title(uint8_t sel, uint16_t best) {
+void ceshi_ui_title(uint8_t sel, uint16_t best) {
     lv_obj_t *scr = uk_screen_new(UK_WALL);
     centered(scr, UK_F36, UK_INK, DT_TITLE, 40);
     centered(scr, UK_F12, UK_INK, DT_SUB, 90);
@@ -41,7 +41,7 @@ void mygame_ui_title(uint8_t sel, uint16_t best) {
     uk_screen_swap(scr);
 }
 
-void mygame_ui_play(void) {
+void ceshi_ui_play(void) {
     lv_obj_t *scr = uk_screen_new(UK_WALL);
     for (int i = 0; i < DM_ROWS; i++) {
         s_holes[i] = uk_rect(scr, HOLE_X - 10, ROW_Y0 + i * ROW_H + 40, 70, 12, UK_FLOOR_D);
@@ -58,7 +58,7 @@ void mygame_ui_play(void) {
     uk_screen_swap(scr);
 }
 
-void mygame_ui_play_update(const mygame_game_t *g, uint32_t flash_ms) {
+void ceshi_ui_play_update(const ceshi_game_t *g, uint32_t flash_ms) {
     uk_spos(s_slipper, HOLE_X - 16 * SCALE - 8, ROW_Y0 + g->row * ROW_H);
     bool up = g->who != DM_EMPTY;
     uk_show(s_thing, up);
@@ -78,7 +78,7 @@ void mygame_ui_play_update(const mygame_game_t *g, uint32_t flash_ms) {
     uk_set_text(s_hint, up && g->who == DM_CAT ? DT_NO_CAT : DT_HELP);
 }
 
-void mygame_ui_over(uint16_t score, uint16_t best) {
+void ceshi_ui_over(uint16_t score, uint16_t best) {
     lv_obj_t *scr = uk_screen_new(UK_WALL);
     centered(scr, UK_F36, UK_RED, DT_OVER, 60);
     char buf[24];

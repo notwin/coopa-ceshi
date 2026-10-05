@@ -1,9 +1,9 @@
-id = "mygame"
-name = "拍拖鞋"
+id = "ceshi"
+name = "自测小游戏"
 version = "1.0.0"
 sdk = 1
 kit_api = 1
-app = "mygame_app"
+app = "ceshi_app"
 milestones = [
   "拍到 10 只库巴",
   "拍到 30 只库巴",

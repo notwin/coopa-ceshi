@@ -1,4 +1,4 @@
-// src/mygame_logic.h —— 「拍拖鞋」玩法(纯 C,不碰 LVGL / NVS,主机可测)。
+// src/ceshi_logic.h —— 「拍拖鞋」玩法(纯 C,不碰 LVGL / NVS,主机可测)。
 // 三行洞,库巴(80%)或猫(20%)从某一行冒出来;▲▼ 移动拖鞋,● 拍。
 // 拍到库巴 +1;拍到猫丢命;库巴停留超时跑掉也丢命;拍空不罚。3 条命。
 #pragma once
@@ -22,16 +22,16 @@ typedef struct {
     uint8_t hole;        // 冒出来的那一行(who == DM_EMPTY 时无意义)
     dm_who_t who;
     uint32_t left_ms;    // who != EMPTY:还能停多久;EMPTY:还要等多久才冒
-} mygame_game_t;
+} ceshi_game_t;
 
 // 开一局。seed 由调用方给(卡上是 esp_random()),0 会换成固定的非 0 值。
-void mygame_start(mygame_game_t *g, uint32_t seed);
+void ceshi_start(ceshi_game_t *g, uint32_t seed);
 // dir = -1 往上、+1 往下,到头循环。
-void mygame_move(mygame_game_t *g, int dir);
+void ceshi_move(ceshi_game_t *g, int dir);
 // 拍一下:DM_HIT(库巴,+1)、DM_OOPS(猫,丢命)、DM_MISS(空的或行不对,什么都不变)。
-dm_event_t mygame_swat(mygame_game_t *g);
+dm_event_t ceshi_swat(ceshi_game_t *g);
 // 过 dt 毫秒:返回 DM_LOST(库巴跑了,丢命)或 DM_NONE。
-dm_event_t mygame_tick(mygame_game_t *g, uint32_t dt);
+dm_event_t ceshi_tick(ceshi_game_t *g, uint32_t dt);
 // 冒出来的东西停留多久:1500 − 30×分数,最少 500。
-uint32_t mygame_show_ms(uint16_t score);
-bool mygame_over(const mygame_game_t *g);
+uint32_t ceshi_show_ms(uint16_t score);
+bool ceshi_over(const ceshi_game_t *g);
